@@ -38,9 +38,10 @@ queryTuples = hdfsQuerySplit.map(lambda l:
 )
 
 queryFields = [
-	StructField('TPR_AS_OF_DT', DateType(),True)
+	 StructField('TPR_AS_OF_DT', DateType(),True)
 	,StructField('BATCH_RUN_ID', IntegerType(), True)
 	,StructField('TDR_TIME', LongType(),True)
+	,StructField('TDR_TYPE', StringType,True)
 	,StructField('HOST_NAME',StringType(),True)
 	,StructField('CLIENT_GROUP',StringType(),True)
 	,StructField('CLIENT',StringType(),True)
