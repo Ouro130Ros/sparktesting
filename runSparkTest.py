@@ -15,9 +15,11 @@ sc = session.sparkContext
 hdfsQueryFile = sc.textFile(NAMENODE_URI + 'QUERY')
 hdfsQuerySplit = hdfsQueryFile.map(lambda l: l.split("|"))
 
+today = datetime.datetime.now()
+
 queryTuples = hdfsQuerySplit.map(lambda l: 
 	(
-		str(datetime.datetime.now()).split()[0],
+		today, #str(datetime.datetime.now()).split()[0],
 		1,
 		long(l[0]),
 		l[1],
@@ -41,7 +43,7 @@ queryFields = [
 	 StructField('TPR_AS_OF_DT', DateType(),True)
 	,StructField('BATCH_RUN_ID', IntegerType(), True)
 	,StructField('TDR_TIME', LongType(),True)
-	,StructField('TDR_TYPE', StringType,True)
+	,StructField('TDR_TYPE', StringType() ,True)
 	,StructField('HOST_NAME',StringType(),True)
 	,StructField('CLIENT_GROUP',StringType(),True)
 	,StructField('CLIENT',StringType(),True)
