@@ -10,7 +10,7 @@ SPARK_URI = 'spark://' + MASTER_URI + ":7077"
 
 session = SparkSession.builder.appName("SparkTests").getOrCreate()
 #conf = SparkConf().setAppName("SparkTests")
-sc = SparkContext(conf = session.conf)
+sc = session.sparkContext 
 
 hdfsQueryFile = sc.textFile(NAMENODE_URI + 'QUERY')
 hdfsQuerySplit = hdfsQueryFile.map(lambda l: l.split("|"))
